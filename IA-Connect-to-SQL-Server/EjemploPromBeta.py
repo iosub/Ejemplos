@@ -10,6 +10,17 @@ from langchain_core.prompts import ChatPromptTemplate
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
 db = SQLDatabase.from_uri(conn_str,sample_rows_in_table_info=2)
+from langchain_community.utilities import SQLDatabase
+
+
+# Obtener información de las tablas
+table_info = db.get_table_info()
+
+# Extraer los nombres de las tablas
+table_names =db.get_table_names() #[info['name'] for info in table_info]
+
+# Ahora table_names contiene los nombres de todas las tablas de la base de datos
+
 llm = Ollama(model="codegemma", temperature=0)
 #=========================================================================================================================================================
 
@@ -61,8 +72,9 @@ chain = create_sql_query_chain(llm, db) #| parse_final_answer
 
 query = chain.invoke(
     {
-        #"question": "listame las facturas del cliente con denomi='GRUPO MZ'"
+       # "question": "listame las facturas del cliente con denomi='GRUPO MZ'"
          "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
+        , "table_info":table_names
        
     }
 )
