@@ -32,7 +32,7 @@ Write an initial draft of the query. Then double check the {dialect} query for c
 - Casting to the correct data type
 - Using the proper columns for joins
 - Using the proper columns names
-- Using the proper table names
+- Using the proper tables names
 
 Use format:
 
