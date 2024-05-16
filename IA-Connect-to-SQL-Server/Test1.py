@@ -21,7 +21,7 @@ def generate_and_execute_sql(question):
     #sql_query = sql_query_chain.invoke({question:question})
     
     # Ejecutar la consulta SQL
-    result = db.run(sql_query,)
+    result = db.run(sql_query)
     
     return result
 

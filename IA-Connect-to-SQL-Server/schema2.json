@@ -1,0 +1,204 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Invoice",
+    "accountId": {
+      "value": "string",
+      "confidenceScore": "number"
+    },
+    "billingPeriod": {
+      "value": "Duration",
+      "confidenceScore": "number"
+    },
+    "broker": {
+      "@type": "Organization",
+      "name": {
+        "value": "string",
+        "confidenceScore": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "category": {
+      "value": "Thing",
+      "confidenceScore": "number"
+    },
+    "confirmationNumber": {
+      "value": "string",
+      "confidenceScore": "number"
+    },
+    "customer": {
+      "@type": "Organization",
+      "name": {
+        "value": "string",
+        "confidenceScore": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "minimumPaymentDue": {
+      "@type": "MonetaryAmount",
+      "value": {
+        "value": "number",
+        "confidenceScore": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "paymentDueDate": {
+      "value": "Date",
+      "confidenceScore": "number"
+    },
+    "paymentMethod": {
+      "value": "PaymentMethod",
+      "confidenceScore": "number"
+    },
+    "paymentMethodDetails": {
+      "paymentType": {
+        "value": "string",
+        "confidenceScore": "number"
+      },
+      "bankAccountNumber": {
+        "value": "string",
+        "confidenceScore": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "paymentMethodId": {
+      "value": "string",
+      "confidenceScore": "number"
+    },
+    "paymentStatus": {
+      "value": "PaymentStatusType",
+      "confidenceScore": "number"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": {
+        "value": "string",
+        "confidenceScore": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "referencesOrder": {
+      "@type": "Order",
+      "orderNumber": {
+        "value": "string",
+        "confidenceScore": "number"
+      },
+      "orderedItem": [
+        {
+          "@type": "OrderItem",
+          "orderItemNumber": {
+            "value": "string",
+            "confidenceScore": "number"
+          },
+          "orderQuantity": {
+            "value": "number",
+            "confidenceScore": "number"
+          },
+          "orderedItem": {
+            "@type": "Product",
+            "name": {
+              "value": "string",
+              "confidenceScore": "number"
+            },
+            "confidenceScore": "number"
+          },
+          "taxes": {
+            "value": {
+              "@type": "MonetaryAmount",
+              "value": "number"
+            },
+            "confidenceScore": "number"
+          },
+          "discounts": {
+            "value": {
+              "@type": "MonetaryAmount",
+              "value": "number"
+            },
+            "confidenceScore": "number"
+          },
+          "confidenceScore": "number"
+        },
+        {
+          "@type": "OrderItem",
+          "orderItemNumber": {
+            "value": "string",
+            "confidenceScore": "number"
+          },
+          "orderQuantity": {
+            "value": "number",
+            "confidenceScore": "number"
+          },
+          "orderedItem": {
+            "@type": "Product",
+            "name": {
+              "value": "string",
+              "confidenceScore": "number"
+            },
+            "confidenceScore": "number"
+          },
+          "taxes": {
+            "value": {
+              "@type": "MonetaryAmount",
+              "value": "number"
+            },
+            "confidenceScore": "number"
+          },
+          "discounts": {
+            "value": {
+              "@type": "MonetaryAmount",
+              "value": "number"
+            },
+            "confidenceScore": "number"
+          },
+          "confidenceScore": "number"
+        }
+      ],
+      "confidenceScore": "number"
+    },
+    "scheduledPaymentDate": {
+      "value": "Date",
+      "confidenceScore": "number"
+    },
+    "totalPaymentDue": {
+      "@type": "MonetaryAmount",
+      "value": {
+        "value": "number",
+        "confidenceScore": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "additionalType": {
+      "value": "URL",
+      "confidenceScore": "number"
+    },
+    "alternateName": {
+      "value": "string",
+      "confidenceScore": "number"
+    },
+    "description": {
+      "value": "string",
+      "confidenceScore": "number"
+    },
+    "disambiguatingDescription": {
+      "value": "string",
+      "confidenceScore": "number"
+    },
+    "identifier": {
+      "value": "PropertyValue or string",
+      "confidenceScore": "number"
+    },
+    "taxes": {
+      "value": {
+        "@type": "MonetaryAmount",
+        "value": "number"
+      },
+      "confidenceScore": "number"
+    },
+    "discounts": {
+      "value": {
+        "@type": "MonetaryAmount",
+        "value": "number"
+      },
+      "confidenceScore": "number"
+    }
+  }
+  

@@ -1,0 +1,114 @@
+{
+    "type": "object",
+    "title": "Factura Completa",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "required": [
+      "invoice_number",
+      "customer",
+      "date",
+      "total_amount",
+      "lines",
+      "taxes",
+      "due_dates",
+      "payment_method"
+    ],
+    "properties": {
+      "date": {
+        "type": "string",
+        "title": "Date",
+        "format": "date",
+        "description": "The date when the invoice was issued."
+      },
+      "lines": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "description",
+            "quantity",
+            "unit_price"
+          ],
+          "properties": {
+            "quantity": {
+              "type": "integer",
+              "title": "Quantity",
+              "description": "The quantity of the item."
+            },
+            "unit_price": {
+              "type": "number",
+              "title": "Unit Price",
+              "description": "The price per unit of the item."
+            },
+            "description": {
+              "type": "string",
+              "title": "Description",
+              "description": "Description of the line item."
+            }
+          }
+        },
+        "title": "Invoice Lines",
+        "description": "The individual line items on the invoice."
+      },
+      "taxes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "name",
+            "amount"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Tax Name",
+              "description": "The name of the tax."
+            },
+            "amount": {
+              "type": "number",
+              "title": "Tax Amount",
+              "description": "The amount of the tax applied."
+            }
+          }
+        },
+        "title": "Taxes",
+        "description": "Taxes applied on the invoice."
+      },
+      "customer": {
+        "type": "object",
+        "title": "Customer",
+        "required": [
+          "name",
+          "email"
+        ],
+        "description": "Information about the customer associated with the invoice."
+      },
+      "due_dates": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "title": "Due Date",
+          "format": "date",
+          "description": "The due date for payment."
+        },
+        "title": "Due Dates",
+        "description": "Due dates for payment of the invoice."
+      },
+      "total_amount": {
+        "type": "number",
+        "title": "Total Amount",
+        "description": "The total amount of the invoice."
+      },
+      "invoice_number": {
+        "type": "string",
+        "title": "Invoice Number",
+        "description": "The unique identifier of the invoice."
+      },
+      "payment_method": {
+        "type": "string",
+        "title": "Payment Method",
+        "description": "The method of payment for the invoice."
+      }
+    },
+    "description": "Schema for extracting complete invoice information including lines, taxes, due dates, payment method, and all required keys and sections."
+  }
+  

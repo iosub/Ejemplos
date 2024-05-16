@@ -20,6 +20,22 @@ SQL Result: {result}
 Answer: """
 )
 
+
+template = '''Given an input question, first create a syntactically correct {dialect} query to run, then look at the results of the query and return the answer.
+Use the following format:
+
+Question: "Question here"
+SQLQuery: "SQL Query to run"
+SQLResult: "Result of the SQLQuery"
+Answer: "Final answer here"
+
+Only use the following tables:
+
+{table_info}.
+
+Question: {input}'''
+prompt = PromptTemplate.from_template(template)
+
 # Conectar a SQL Server
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
 db = SQLDatabase.from_uri(conn_str)
@@ -29,20 +45,25 @@ ollama = Ollama(model="llama3", temperature=0)
 #sql_query_chain = create_sql_query_chain(llm=ollama, db=db)
 
 
-execute_query = QuerySQLDataBaseTool(db=db)
+execute_query = QuerySQLDataBaseTool(db=db,verbose=True)
 write_query = create_sql_query_chain(ollama, db)
-#chain = write_query | execute_query
+chain = write_query | execute_query
 
-answer = answer_prompt | ollama | StrOutputParser()
-print(answer)
+#answer = answer_prompt | ollama | StrOutputParser()
+answer = prompt | ollama | StrOutputParser()
+#print(answer)
 
-chain = (
-    RunnablePassthrough.assign(query=write_query).assign(
-        result=itemgetter("query") | execute_query
-    )
-    | answer
-)
+#chain = (
+ #   RunnablePassthrough.assign(query=write_query).assign(
+  #      result=itemgetter("query") | execute_query
+  #  )
+  #  | answer
+#)
 
-response3=chain.invoke({"question": "How many employees are there"})
-print(response3)
-print(answer)
+chain.invoke({"question": "How many employees are there"})
+print(write_query)
+print(execute_query)
+
+#response3=chain.invoke({"question": "How many employees are there"})
+#print(chain)
+#print(answer)
