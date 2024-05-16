@@ -9,9 +9,18 @@ from langchain_core.prompts import ChatPromptTemplate
 
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
-db = SQLDatabase.from_uri(conn_str,sample_rows_in_table_info=2)
-from langchain_community.utilities import SQLDatabase
+#db = SQLDatabase.from_uri(conn_str,sample_rows_in_table_info=2)
 
+#https://github.com/langchain-ai/langchain/issues/14440
+#db=SQLDatabase(engine=dbengine,include_tables=["invoice","customer"],custom_table_info=table_info2)
+#table_info2={'invoice':" the customer_id in invoice table is referenced to customers table's company_id",}
+table_info2={'Facturas':" es T_FACTURA",}
+#T_FACTURA
+db = SQLDatabase.from_uri(conn_str,custom_table_info=table_info2)
+
+
+ 
+ 
 
 # Obtener información de las tablas
 table_info = db.get_table_info()
@@ -21,7 +30,8 @@ table_names =db.get_table_names() #[info['name'] for info in table_info]
 
 # Ahora table_names contiene los nombres de todas las tablas de la base de datos
 
-llm = Ollama(model="codegemma", temperature=0)
+#llm = Ollama(model="codegemma", temperature=0)
+llm = Ollama(model="llama3", temperature=0)
 #=========================================================================================================================================================
 
 system = """You are a {dialect} expert. Given an input question, creat a syntactically correct {dialect} query to run.
@@ -65,16 +75,16 @@ def parse_final_answer(output: str) -> str:
 #    return (pp)
 
 
-
+#chainmapeo = create_sql_query_chain.bind(table_name="Facturas=T_Factura") #| some_other_operation | ...)
 #chain = create_sql_query_chain(llm, db, prompt=prompt) | parse_final_answer
 #prompt.pretty_print()
-chain = create_sql_query_chain(llm, db) #| parse_final_answer
-
+#chain =chainmapeo|(create_sql_query_chain(llm, db)) #| parse_final_answer
+chain =create_sql_query_chain(llm, db)
 query = chain.invoke(
     {
-       # "question": "listame las facturas del cliente con denomi='GRUPO MZ'"
-         "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
-        , "table_info":table_names
+       "question": "listame las facturas del cliente con denomi='GRUPO MZ'"
+       #  "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
+       # , "table_info":table_names
        
     }
 )
