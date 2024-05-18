@@ -8,7 +8,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 
-conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
+conn_str = "mssql+pyodbc://gg:ostia@lenovo12/ia2?driver=ODBC+Driver+17+for+SQL+Server"
 #db = SQLDatabase.from_uri(conn_str,sample_rows_in_table_info=2)
 
 #https://github.com/langchain-ai/langchain/issues/14440
@@ -16,9 +16,9 @@ conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+
 #table_info2={'invoice':" the customer_id in invoice table is referenced to customers table's company_id",}
 table_info2={'Facturas':" es T_FACTURA",}
 #T_FACTURA
-db = SQLDatabase.from_uri(conn_str,custom_table_info=table_info2)
+db = SQLDatabase.from_uri(conn_str)#,custom_table_info=table_info2)
 
-
+output_parser=StrOutputParser()
  
  
 
@@ -54,12 +54,15 @@ Write an initial draft of the query. Then double check the {dialect} query for c
 - Using the proper columns for joins
 - Using the proper columns names
 - Using the proper table names
+- check the tables names exists 
 
 
 Use format:
 
 First draft: <<FIRST_DRAFT_QUERY>>
 Final answer: <<FINAL_ANSWER_QUERY>>
+
+Output the final SQL query only.
 """
 prompt = ChatPromptTemplate.from_messages(
     [("system", system), ("human", "{input}")]
@@ -79,18 +82,25 @@ def parse_final_answer(output: str) -> str:
 #chain = create_sql_query_chain(llm, db, prompt=prompt) | parse_final_answer
 #prompt.pretty_print()
 #chain =chainmapeo|(create_sql_query_chain(llm, db)) #| parse_final_answer
-chain =create_sql_query_chain(llm, db)
+#chain =create_sql_query_chain(llm, db)
+#chaint=prompt | llm| output_parser
+#chaint=chain | prompt| output_parser
+chain = create_sql_query_chain(llm, db, prompt=prompt)# | parse_final_answer
 query = chain.invoke(
     {
-       "question": "listame las facturas del cliente con denomi='GRUPO MZ'"
-       #  "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
+       #"input": "listame las facturas del cliente con denomi='GRUPO MZ'"
+       # "question": "listame las  articu"
+
+       #"question": "listame las facturas del cliente con denomi='GRUPO MZ'"
+        "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
        # , "table_info":table_names
        
     }
 )
 query
+query=(query.split("Final answer:")[1]).replace('```','')
 
-query=(query.split("```")[1]).replace('sql','')
+#query=(query.split("```")[1]).replace('sql','')
 print(query)
 print("========================================================================================")
 
