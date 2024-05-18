@@ -6,7 +6,9 @@ from langchain_community.llms import Ollama
 from langchain_community.tools.sql_database.tool import QuerySQLDataBaseTool
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 
+output_parser=StrOutputParser()
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
 db = SQLDatabase.from_uri(conn_str)
@@ -14,11 +16,13 @@ llm = Ollama(model="llama3", temperature=0)
 
 chain = create_sql_query_chain(llm, db)
 chain.get_prompts()[0].pretty_print()
-query = chain.invoke(
+chaint=chain| output_parser
+query = chaint.invoke(
     {
         "question": "How many employees are there"
     }
 )
+
 print(query)
 query=(query.split("```")[1]).replace('sql','')
 print(db.run(query))
