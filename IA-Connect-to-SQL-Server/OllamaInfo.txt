@@ -31,6 +31,8 @@ print(llm.invoke("Hello, how are you?").content)
 
 https://github.com/langchain-ai/langchain/issues/17596
 
+OLLAMA MODELOS
+https://ollama.com/library/sqlcoder
 
 OLLAMA FUNCIONES JSON
 https://github.com/langchain-ai/langchain/issues/11847
