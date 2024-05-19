@@ -1,0 +1,90 @@
+https://python.langchain.com/v0.1/docs/integrations/chat/ollama_functions/#structured-output
+https://python.langchain.com/v0.1/docs/integrations/chat/ollama/
+
+https://api.python.langchain.com/en/latest/llms/langchain_experimental.llms.ollama_functions.OllamaFunctions.html
+https://github.com/ollama/ollama/blob/main/docs/openai.md
+https://python.langchain.com/v0.1/docs/integrations/chat/llama_edge/
+https://python.langchain.com/v0.1/docs/additional_resources/youtube/#videos-sorted-by-views
+
+SEGUIR
+https://github.com/langchain-ai/langchain/issues/13802
+https://github.com/langchain-ai/langchain/issues/20439
+https://github.com/langchain-ai/langchain/issues/20765
+
+JSON
+https://github.com/langchain-ai/langchain/issues/14335
+
+OPENAPI Ollama
+https://github.com/langchain-ai/langchain/pull/16993
+https://github.com/langchain-ai/langchain/issues/14360
+https://ollama.com/blog/openai-compatibility
+
+from langchain_openai import ChatOpenAI, OpenAI
+llm = ChatOpenAI(
+    temperature=0,
+    model_name="phi",
+    openai_api_base="http://localhost:11434/v1",
+    openai_api_key="Not needed for local server",
+)
+print(llm.invoke("Hello, how are you?").content)
+
+
+https://github.com/langchain-ai/langchain/issues/17596
+
+
+OLLAMA FUNCIONES JSON
+https://github.com/langchain-ai/langchain/issues/11847
+https://local-llm-function-calling.readthedocs.io/en/latest/
+
+Mejoras
+https://github.com/langchain-ai/langchain/pull/20881
+
+BUGS
+https://github.com/langchain-ai/langchain/issues/21299
+https://github.com/langchain-ai/langchain/pull/21219
+https://github.com/langchain-ai/langchain/issues/12892
+
+AZURE
+https://github.com/langchain-ai/langchain/issues/10961
+
+OLLAMA TOOLS
+https://github.com/langchain-ai/langchain/issues/9917
+https://github.com/langchain-ai/langchain/issues/10961
+https://js.langchain.com/v0.1/docs/modules/agents/tools/dynamic/
+
+SQL AGENTES
+https://github.com/langchain-ai/langchain/issues/13129
+https://github.com/langchain-ai/langchain/issues/18439
+https://github.com/langchain-ai/langchain/issues/17939
+    PROMPT
+    https://github.com/langchain-ai/langchain/issues/17939#issuecomment-2081660241
+
+Lento
+https://github.com/langchain-ai/langchain/issues/20621
+from langchain_community.llms import Ollama
+from langchain.chains import RetrievalQA
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.vectorstores import Chroma
+
+# reset DB variable
+db=None
+
+embeddings = OllamaEmbeddings(model="mistral")
+
+# read from Chroma
+db = Chroma(persist_directory="c:/test/Ollama/RAG/data", embedding_function=embeddings)
+
+llm = Ollama(base_url='http://localhost:11434', model="mistral", temperature=0)
+
+qa_chain = RetrievalQA.from_chain_type(
+    llm,
+    retriever=db.as_retriever(search_type="similarity", search_kwargs={"k": 2})
+)
+
+question = "Here comes the question text?"
+result = qa_chain.invoke({"query": question})
+result["result"]
+print(result)
+
+# delete collection
+db.delete_collection()

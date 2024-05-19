@@ -8,7 +8,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 
-conn_str = "mssql+pyodbc://gg:ostia@lenovo12/ia2?driver=ODBC+Driver+17+for+SQL+Server"
+conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 #db = SQLDatabase.from_uri(conn_str,sample_rows_in_table_info=2)
 
 #https://github.com/langchain-ai/langchain/issues/14440
@@ -91,8 +91,8 @@ query = chain.invoke(
        #"input": "listame las facturas del cliente con denomi='GRUPO MZ'"
        # "question": "listame las  articu"
 
-       #"question": "listame las facturas del cliente con denomi='GRUPO MZ'"
-        "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
+       "question": "listame las facturas del cliente con denomi='GRUPO MZ'"
+       # "question": "listame las facturas del cliente con DENOMI 'GRUPO MZ' donde la tabla de facturas se llama T_FACTURA"
        # , "table_info":table_names
        
     }
