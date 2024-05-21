@@ -3,9 +3,16 @@
 from langchain_openai import ChatOpenAI
 from langchain_community.utilities import SQLDatabase
 from langchain.chains import create_sql_query_chain
-llm = ChatOpenAI(model="gpt-3.5-turbo-1106", temperature=0)
+
+from langchain_community.llms import Ollama
+
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
+#llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
+
+conn_str = "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
+
 db = SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 
 system = """Double check the user's {dialect} query for common mistakes, including:

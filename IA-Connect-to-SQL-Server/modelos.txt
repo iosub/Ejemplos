@@ -1,0 +1,108 @@
+PS C:\Ia\iosub\Ejemplos\IA-Connect-to-SQL-Server> ollama list
+NAME                                                    ID              SIZE    MODIFIED     
+adult-film-screenwriter:latest                          7ce653ce0ba3    4.1 GB  7 hours ago 
+dolphin-mistral:latest                                  5dc8c5a2be65    4.1 GB  7 hours ago 
+8betacopilot-tarea-llama3-8k:latest                     6fab9c11ff00    8.5 GB  15 hours ago
+llama3:8b-instruct-q8_0                                 5a511385d20f    8.5 GB  17 hours ago
+sqlcoder:latest                                         77ac14348387    4.1 GB  29 hours ago
+codegemma:latest                                        0c96700aaada    5.0 GB  3 days ago  
+8betacopilot-tarea-mistral:latest                       6ec6c5bb7ee3    4.1 GB  5 days ago  
+8betacopilot-tarea-llama3:latest                        e453230e84b9    4.7 GB  5 days ago  
+8beta1-tarea-llama3:latest                              fcf5c44b1ceb    4.7 GB  5 days ago  
+8beta1-tarea-codegemma7b:latest                         b33519fd3d16    5.0 GB  5 days ago  
+6beta3-mio-codegemma7b:latest                           17a5f7f647d2    5.0 GB  5 days ago  
+codegemma:7b                                            0c96700aaada    5.0 GB  5 days ago  
+llava-phi3:latest                                       c7edd7b87593    2.9 GB  6 days ago
+6beta-mio-pronto-nuevo:latest                           632c69ae2e33    4.7 GB  6 days ago
+6a-1-mio-pronto-nuevo:latest                            640c16dea00b    4.7 GB  6 days ago
+6a-mio-pronto-nuevo:latest                              32bd43a2a5ef    4.7 GB  6 days ago
+7-mio-pronto-nuevo-mistral:latest                       c6a3f5ceec0e    4.1 GB  6 days ago
+6-mio-pronto-nuevo:latest                               18bab30642e5    4.7 GB  6 days ago
+5-mio-pronto-nuevo:latest                               5b4134ab312c    4.7 GB  6 days ago
+4-mio-funciona-bien:latest                              a95d6774a839    4.7 GB  6 days ago
+3-mio-funciona-bien:latest                              e8e452df670d    4.7 GB  6 days ago
+2-mio-funciona-bien:latest                              7a9469e0e1c9    4.7 GB  6 days ago
+1-mio-funciona-bien:latest                              573fcae18f2f    4.7 GB  6 days ago
+llama3:8b                                               a6990ed6be41    4.7 GB  6 days ago
+mio-funciona-bien:latest                                7b461e0cfaf2    4.7 GB  6 days ago
+llama3temp0:latest                                      7b461e0cfaf2    4.7 GB  6 days ago
+funciona-llava-rapido-beta2-score-data-organizer:latest 678338bff870    4.7 GB  9 days ago
+funciona-bien-instruct:latest                           4e0129d03c1e    4.7 GB  9 days ago
+llama3:instruct                                         a6990ed6be41    4.7 GB  9 days ago
+funciona-bien:latest                                    7b461e0cfaf2    4.7 GB  9 days ago
+llava-rapido-beta2-score-data-organizer:latest          678338bff870    4.7 GB  9 days ago
+llama3-rapido-beta2-score-data-organizer:latest         7b461e0cfaf2    4.7 GB  9 days ago
+mistral-rapido-beta2-score-data-organizer:latest        443f86848e6d    4.1 GB  9 days ago
+hub/dotslashgabut/genaiprompt:latest                    58c07c625d68    2.3 GB  10 days ago
+hub/stewart/multi-agent:latest                          8cc6e95685ac    3.8 GB  10 days ago
+qwen:0.5b                                               b5dc5e784f2a    394 MB  11 days ago
+invoice-extraction-v2-llama-2-7b-v2.Q4_0.gguf:latest    290412b3e2cd    3.8 GB  11 days ago
+mxbai-embed-large:latest                                468836162de7    669 MB  11 days ago
+llama3-rapido-score-data-organizer:latest               96d438dc194f    4.7 GB  11 days ago
+llama3-rapido-data-organizer:latest                     d81374a746f6    4.7 GB  11 days ago
+hub/zillomab/llama3-uncensored:latest                   baaed885ce5b    4.7 GB  11 days ago 
+ollama.com/library/llama3:8b                            a6990ed6be41    4.7 GB  11 days ago
+hub/binx/llama3-data-organizer:latest                   2c1a7cd2f52f    16 GB   11 days ago
+hub/mkajnar/llama3-70b:latest                           f420dcd8a5fc    4.7 GB  11 days ago
+hub/tatasiyka/document-assistant:latest                 129fbb5310b5    4.1 GB  11 days ago
+hub/simcoex/data-aanalyst---python:latest               5e34dbfa02c4    4.7 GB  11 days ago
+hub/anil/synthetic-data-generator:latest                8e7344fff7dd    4.7 GB  11 days ago
+openmultiagent:latest                                   cc9914508da5    4.7 GB  11 days ago
+llama2:latest                                           78e26419b446    3.8 GB  11 days ago
+miotest1:latest                                         a92c031d725d    4.7 GB  11 days ago
+llava:latest                                            8dd30f6b0cb1    4.7 GB  12 days ago
+mistral:latest                                          61e88e884507    4.1 GB  13 days ago
+llama2-uncensored:latest                                44040b922233    3.8 GB  2 weeks ago
+wizardlm2:latest                                        c9b1aff820f2    4.1 GB  2 weeks ago
+phi3:latest                                             a2c89ceaed85    2.3 GB  2 weeks ago
+llama3:latest                                           a6990ed6be41    4.7 GB  2 weeks ago
+PS C:\Ia\iosub\Ejemplos\IA-Connect-to-SQL-Server> 
+8betacopilot-tarea-llama3-8k:latest
+ollama show 8betacopilot-tarea-llama3-8k:latest --modelfile 
+
+
+ollama show -h 
+
+PS C:\Ia\iosub\Ejemplos\IA-Connect-to-SQL-Server> ollama show -h 
+Show information for a model
+
+Usage:
+  ollama show MODEL [flags]
+
+Flags:
+  -h, --help         help for show
+      --license      Show license of a model
+      --modelfile    Show Modelfile of a model
+      --parameters   Show parameters of a model
+      --system       Show system message of a model
+      --template     Show template of a model
+
+Environment Variables:
+      OLLAMA_HOST        The host:port or base URL of the Ollama server (e.g. http://localhost:11434)
+PS C:\Ia\iosub\Ejemplos\IA-Connect-to-SQL-Server> 
+
+
+      --modelfile 
+      --parameters 
+      --system    
+      --template  
+            ollama show llama3:8b-instruct-q8_0 --system
+                  ollama show llama3:8b-instruct-q8_0 --system
+
+
+      ollama show llama3:8b-instruct-q8_0 --modelfile
+
+            ollama show 8betacopilot-tarea-llama3-8k:latest --template
+
+
+
+
+
+
+
+
+
+
+
+
+
