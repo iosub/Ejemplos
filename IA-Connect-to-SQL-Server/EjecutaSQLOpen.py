@@ -6,8 +6,8 @@ from langchain.chains import create_sql_query_chain
 
 from langchain_community.llms import Ollama
 
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
-#llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
+llmff =5# ChatOpenAI(model="gpt-4o", temperature=0)
+llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
 tables=["T_FACTURA","CLIENTE","DIVISA"]
 
 
@@ -46,7 +46,9 @@ full_chain = {"query": chain} | validation_chain
 
 query = full_chain.invoke(
     {
-      "question": "a que cliente le he facturado mas?"
+      "question": "listame de mas a menos a los cliente que he facturado"
+
+      #"question": "a que cliente le he facturado mas?"
 
       #"question": "total de facturacion en Euros por clientes agrupado por años y muestrame el nombre del cliente en la respuesta"
 
