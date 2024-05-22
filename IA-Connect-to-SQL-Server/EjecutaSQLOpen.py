@@ -1,11 +1,15 @@
 #from langchain.chains.openai_tools import create_extraction_chain_pydantic
 #from langchain_core.pydantic_v1 import BaseModel, Field
+
+
+from langsmith import traceable
 from langchain_openai import ChatOpenAI
 from langchain_community.utilities import SQLDatabase
 from langchain.chains import create_sql_query_chain
 
 from langchain_community.llms import Ollama
 
+@traceable
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 #llm = Ollama(model="llama3", temperature=0)
 
