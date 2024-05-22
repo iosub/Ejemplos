@@ -8,12 +8,12 @@ from langchain_community.llms import Ollama
 
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 #llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
-tables=["T_FACTURA","CLIENTE"]
+tables=["T_FACTURA","CLIENTE","DIVISA"]
 
 
-conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
+conn_strBueno = 44#"mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 
-conn_strold =5# "mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
+conn_str ="mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
 
 dbold = 5#SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 db = SQLDatabase.from_uri(conn_str,include_tables=tables,lazy_table_reflection=True  )#,custom_table_info=table_info2)
@@ -46,7 +46,9 @@ full_chain = {"query": chain} | validation_chain
 
 query = full_chain.invoke(
     {
-      "question": "total de facturacion en Euros por clientes agrupado por años y muestrame el nombre del cliente en la respuesta"
+      "question": "a que cliente le he facturado mas?"
+
+      #"question": "total de facturacion en Euros por clientes agrupado por años y muestrame el nombre del cliente en la respuesta"
 
         #"question": "listame las facturas del cliente 'GRUPO MZ'"
         #  "question": "total de facturacion del cliente 'GRUPO MZ' agrupado por años"
@@ -55,11 +57,24 @@ query = full_chain.invoke(
 print(query)
 query=(query.split("```")[1]).replace('sql','')
 resultado=db.run(query) 
-
+print(query)
 print(resultado)
+
+for item in resultado:
+    print(f"Item: {item}, Length: {len(item)}")
+
+
+
+resultado=(resultado.replace("[","")).replace("]","")
+
+for item in resultado:
+    print(f"Item: {item}, Length: {len(item)}")
+
+
 
 import json
 from decimal import Decimal
+columnas = ["year", "company_name", "revenue"]
 
 def convertir_a_json(resultado, columnas):
     # Manejar el caso de una sola fila
@@ -68,7 +83,7 @@ def convertir_a_json(resultado, columnas):
 
     # Transformar a una lista de diccionarios
     resultado_diccionarios = [
-        {columnas[0]: row[0], columnas[1]: row[1], columnas[2]: float(row[2])}
+        {columnas[0]: row[0], columnas[1]: row[1], columnas[2]: row[2]}
         for row in resultado
     ]
 
@@ -77,7 +92,6 @@ def convertir_a_json(resultado, columnas):
 
 
 # Nombres de las columnas (suponiendo que los conoces)
-columnas = ["year", "company_name", "revenue"]
 resultado_json = convertir_a_json(resultado, columnas)
 print(resultado_json)
 
@@ -115,23 +129,7 @@ from decimal import Decimal
 # Resultado de SQLDatabase.run
 
 # Verificar la estructura del resultado
-for item in resultado:
-    print(f"Item: {item}, Length: {len(item)}")
 
-# Transformar a una lista de diccionarios
-resultado_diccionarios = [
-    {"year": year, "company_name": company_name, "revenue": float(revenue)}
-    for year, company_name, revenue in resultado if len(item) == 3
-]
-
-# Convertir a JSON
-resultado_json = json.dumps(resultado_diccionarios, indent=4)
-
-# Imprimir el resultado JSON
-print(resultado_json)
-
-import json
-from decimal import Decimal
 
 # Resultado de SQLDatabase.run
 #resultado = [
@@ -141,17 +139,7 @@ from decimal import Decimal
 ##    (2004, 'AGEN TRANSF DESAR EUROCIUDAD VASCA BAYONA SS', Decimal('4292000.0000'))
 #]
 
-# Transformar a una lista de diccionarios
-resultado_diccionarios = [
-    {"year": year, "company_name": company_name, "revenue": float(revenue)}
-    for year, company_name, revenue in resultado
-]
-
-# Convertir a JSON
-resultado_json = json.dumps(resultado_diccionarios, indent=4)
-
-# Imprimir el resultado JSON
-print(resultado_json)
+# Transformar a una lista de di
 
 
 
