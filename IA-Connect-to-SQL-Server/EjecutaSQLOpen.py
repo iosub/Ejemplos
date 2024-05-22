@@ -6,8 +6,10 @@ from langchain.chains import create_sql_query_chain
 
 from langchain_community.llms import Ollama
 
-llmff =5# ChatOpenAI(model="gpt-4o", temperature=0)
-llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
+#llm = Ollama(model="llama3", temperature=0)
+
+llmgg = 5#Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
 tables=["T_FACTURA","CLIENTE","DIVISA"]
 
 
