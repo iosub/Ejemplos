@@ -6,7 +6,10 @@ from langchain.chains import create_sql_query_chain
 from langchain_community.llms import Ollama
 
 #llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
-llm = Ollama(model="llama3", temperature=0) #,top_p=0.2)
+llm =Ollama(model="llama3", temperature=0) #,top_p=0.2)
+llme = 5#Ollama(model="phi3:14b-medium-4k-instruct-q4_0", temperature=0) #,top_p=0.2)
+llme = 5#Ollama(model="phi3:14b-medium-4k-instruct-q4_0", temperature=0) #,top_p=0.2)
+
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 tables=["T_FACTURA","CLIENTE"]
@@ -85,8 +88,8 @@ validation_chain = prompt | llm | StrOutputParser()
 full_chain = {"question": chain} | validation_chain
 query = full_chain.invoke(
     {
-        "question": "Lista las Facturas para el cliente con denomi 'GRUPO MZ' y muestra el total de factura"
-          #"question": "Lista las Facturas para el cliente con denomi 'GRUPO MZ'"
+        #"question": "Lista las Facturas para el cliente con denomi 'GRUPO MZ' y muestra el total de factura"
+          "question": "Lista las Facturas para el cliente con denomi 'GRUPO MZ'"
          #"question": "Lista las Facturas muestra solo la fecha de la factura y su total para el cliente con denomi 'GRUPO MZ'"
         #"question": "how many invoices are?"
         #"question": "Lista de Numero de Facturas, fecha factura y total factura para el cliente con denomi 'GRUPO MZ'"

@@ -6,14 +6,19 @@ from langchain.chains import create_sql_query_chain
 from langchain_community.llms import Ollama
 
 llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
-#llm = Ollama(model="llama3", temperature=0)
+llmrr = 444#Ollama(model="llama3", temperature=0)
+llmff = 55#Ollama(model="phi3:14b-medium-4k-instruct-q4_0", temperature=0) #,top_p=0.2)
+
+
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 tables=["T_FACTURA","CLIENTE"]
-db = SQLDatabase.from_uri(conn_str,include_tables=tables  )#,custom_table_info=table_info2)
+dbttt = 44#SQLDatabase.from_uri(conn_str,include_tables=tables  )#,custom_table_info=table_info2)
+db = SQLDatabase.from_uri(conn_str,include_tables=tables,lazy_table_reflection=True  )#,custom_table_info=table_info2)
+
 # Obtener información de las tablas
 
-print(db.get_table_info())
+#print(db.get_table_info())
 
 system=""" 
 ### Instructions:
@@ -97,4 +102,6 @@ query = full_chain.invoke(
 print(query)
 
 query=(query.split("```")[1]).replace('sql','')
-#rint(db.run(query))
+print(query)
+
+print(db.run(query))
