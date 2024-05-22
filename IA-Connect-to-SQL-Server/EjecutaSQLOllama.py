@@ -61,7 +61,8 @@ CREATE TABLE [T_FACTURA] (
     [TIPOREG] VARCHAR(2) , 
     [FACTURA] INTEGER NOT NULL, 
     [FECHAF] DATE NOT NULL, 
-    [Id_CLIENTE] INTEGER NULL
+    [Id_CLIENTE] INTEGER NULL,
+    [Total] decimal(18,3) 
     );
 
 -- T_FACTURA.Id_CLIENTE can be joined with Cliente.Id_CLIENTE
@@ -92,7 +93,9 @@ validation_chain = prompt | llm | StrOutputParser()
 full_chain = {"question": chain} | validation_chain
 query = full_chain.invoke(
     {
-         "question": "Lista las Facturas para el cliente con denomi 'GRUPO MZ'"
+        #"question": "Agrupame por años de fecha factura el importe total de las Facturas para el cliente con denomi 'GRUPO MZ'"
+
+         "question": "Lista las Facturas para el cliente con denomi 'GRUPO MZ' y muestrame en el resultado el numero de factura y la fecha"
         #"question": "how many invoices are?"
         #"question": "Lista de Numero de Facturas, fecha factura y total factura para el cliente con denomi 'GRUPO MZ'"
         #"question": "List of invoices for customer  'GRUPO MZ'"
