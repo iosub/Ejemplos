@@ -94,7 +94,7 @@ PS C:\Ia\iosub\Ejemplos\IA-Connect-to-SQL-Server>
 
             ollama show 8betacopilot-tarea-llama3-8k:latest --template
 
-
+ollama run phi3:14b-medium-4k-instruct-q6_K
 
 
 
