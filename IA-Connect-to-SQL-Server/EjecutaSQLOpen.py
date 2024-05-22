@@ -9,9 +9,9 @@ from langchain.chains import create_sql_query_chain
 
 from langchain_community.llms import Ollama
 
-@traceable
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
-#llm = Ollama(model="llama3", temperature=0)
+#@traceable
+llmoooo = 5#ChatOpenAI(model="gpt-4o", temperature=0)
+llm = Ollama(model="llama3", temperature=0)
 
 llmgg = 5#Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
 tables=["T_FACTURA","CLIENTE","DIVISA"]
@@ -83,7 +83,7 @@ for item in resultado:
 import json
 from decimal import Decimal
 columnas = ["year", "company_name", "revenue"]
-
+@traceable
 def convertir_a_json(resultado, columnas):
     # Manejar el caso de una sola fila
     if isinstance(resultado, tuple):
