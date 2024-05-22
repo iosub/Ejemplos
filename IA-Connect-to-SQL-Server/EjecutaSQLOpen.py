@@ -14,12 +14,12 @@ llmoooo = 5#ChatOpenAI(model="gpt-4o", temperature=0)
 llm = Ollama(model="llama3", temperature=0)
 
 llmgg = 5#Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
-tables=["T_FACTURA","CLIENTE","DIVISA"]
+tables=["T_FACTURA","CLIENTE"]#,"DIVISA"]
 
 
-conn_strBueno = 44#"mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
+conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 
-conn_str ="mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
+conn_strjjj ="mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
 
 dbold = 5#SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 db = SQLDatabase.from_uri(conn_str,include_tables=tables,lazy_table_reflection=True  )#,custom_table_info=table_info2)
@@ -52,14 +52,14 @@ full_chain = {"query": chain} | validation_chain
 
 query = full_chain.invoke(
     {
-      "question": "listame de mas a menos a los cliente que he facturado"
+      #"question": "listame de mas a menos a los cliente que he facturado"
 
       #"question": "a que cliente le he facturado mas?"
 
       #"question": "total de facturacion en Euros por clientes agrupado por años y muestrame el nombre del cliente en la respuesta"
 
         #"question": "listame las facturas del cliente 'GRUPO MZ'"
-        #  "question": "total de facturacion del cliente 'GRUPO MZ' agrupado por años"
+          "question": "total de facturacion del cliente 'GRUPO MZ' agrupado por años"
     }
 )
 print(query)
