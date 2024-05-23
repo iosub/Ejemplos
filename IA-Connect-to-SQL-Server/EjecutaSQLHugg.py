@@ -24,7 +24,16 @@ conn_strjjj ="mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Drive
 
 dbffff = SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 db = SQLDatabase.from_uri(conn_str,include_tables=tables,lazy_table_reflection=True  )#,custom_table_info=table_info2)
+<|begin_of_text|><|start_header_id|>user<|end_header_id|>
 
+Generate a SQL query to answer this question: `{user_question}`
+{instructions}
+
+DDL statements:
+{create_table_statements}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+The following SQL query best answers the question `{user_question}`:
+```sql
 
 system = """Double check the user's {dialect} query for common mistakes, including:
 - Using NOT IN with NULL values
