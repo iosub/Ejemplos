@@ -10,9 +10,9 @@ from langchain.chains import create_sql_query_chain
 from langchain_community.llms import Ollama
 
 #@traceable
-llmoooo = 5#ChatOpenAI(model="gpt-4o", temperature=0)
-llmuu =6# Ollama(model="llama3", temperature=0)
-llm = Ollama(model="mannix/defog-llama3-sqlcoder-8b:q8_0", temperature=0)
+llm= ChatOpenAI(model="gpt-4o", temperature=0)
+llmjj = 4#Ollama(model="llama3", temperature=0)
+llmuu = 5#Ollama(model="mannix/defog-llama3-sqlcoder-8b:q8_0", temperature=0)
 
 llmgg = 5#Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
 tables=["T_FACTURA","CLIENTE"]#,"DIVISA"]
@@ -22,7 +22,7 @@ conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQ
 
 conn_strjjj ="mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Driver+17+for+SQL+Server"
 
-dbold = 5#SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
+dbffff = SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 db = SQLDatabase.from_uri(conn_str,include_tables=tables,lazy_table_reflection=True  )#,custom_table_info=table_info2)
 
 

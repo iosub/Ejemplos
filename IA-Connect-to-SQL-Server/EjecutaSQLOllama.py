@@ -6,6 +6,7 @@ from langchain.chains import create_sql_query_chain
 from langchain_community.llms import Ollama
 
 llm = Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
+llm = Ollama(model="mannix/defog-llama3-sqlcoder-8b:q8_0", temperature=0)
 llmrr = 444#Ollama(model="llama3", temperature=0)
 llmff = 55#Ollama(model="phi3:14b-medium-4k-instruct-q4_0", temperature=0) #,top_p=0.2)
 
