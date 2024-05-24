@@ -15,3 +15,8 @@ https://github.com/defog-ai/sql-eval/blob/main/query_generators/openai.py
 https://ollama.com/mannix/defog-llama3-sqlcoder-8b
 https://huggingface.co/defog/llama-3-sqlcoder-8b/discussions/4
 
+Azure
+https://learn.microsoft.com/es-es/azure/developer/python/e
+
+https://learn.microsoft.com/es-es/azure/developer/python/get-started?tabs=cmd#phase-2-configure-your-local-python-environment-for-azure-development
+
