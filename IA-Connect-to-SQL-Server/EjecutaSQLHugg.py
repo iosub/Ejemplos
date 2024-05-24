@@ -8,14 +8,15 @@ from langchain_community.utilities import SQLDatabase
 from langchain.chains import create_sql_query_chain
 
 from langchain_community.llms import Ollama
+#from langchain_core.prompts import PromptTemplate
+tables=["T_FACTURA","CLIENTE"]#,"DIVISA"]
 
 #@traceable
-llm= ChatOpenAI(model="gpt-4o", temperature=0)
+llmhh=4# ChatOpenAI(model="gpt-4o", temperature=0)
 llmjj = 4#Ollama(model="llama3", temperature=0)
-llmuu = 5#Ollama(model="mannix/defog-llama3-sqlcoder-8b:q8_0", temperature=0)
+llm= Ollama(model="mannix/defog-llama3-sqlcoder-8b:q8_0", temperature=0)
 
 llmgg = 5#Ollama(model="llama3:8b-instruct-q8_0", temperature=0)
-tables=["T_FACTURA","CLIENTE"]#,"DIVISA"]
 
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
@@ -24,18 +25,21 @@ conn_strjjj ="mssql+pyodbc://gg:ostia@lenovo12/MspLitePro_V3GG?driver=ODBC+Drive
 
 dbffff = SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 db = SQLDatabase.from_uri(conn_str,include_tables=tables,lazy_table_reflection=True  )#,custom_table_info=table_info2)
+
+system="""
 <|begin_of_text|><|start_header_id|>user<|end_header_id|>
 
-Generate a SQL query to answer this question: `{user_question}`
-{instructions}
+Generate a SQL query to answer this question: `{question}`
+
 
 DDL statements:
 {create_table_statements}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
-The following SQL query best answers the question `{user_question}`:
+The following SQL query best answers the question `{question}`:
 ```sql
+"""
 
-system = """Double check the user's {dialect} query for common mistakes, including:
+systemrrr = """Double check the user's {dialect} query for common mistakes, including:
 - Using NOT IN with NULL values
 - Using UNION when UNION ALL should have been used
 - Using BETWEEN for exclusive ranges
@@ -52,13 +56,24 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import MarkdownListOutputParser
 
+#{create_table_statements}
 
 prompt = ChatPromptTemplate.from_messages(
-    [("system", system), ("human", "{query}")]
-).partial(dialect=db.dialect)
+    
+    [("system", system), ("human", "{question}")]
+).partial(create_table_statements= db.get_table_info(),instructions="")
+#.partial(dialect=db.dialect)
+
+#[('user_question',"{query}"), ('create_table_statements', db.get_table_info()),('instructions',"")]
+
+#query="total de facturacion del cliente 'GRUPO MZ' agrupado por años"
+
+#prompt=PromptTemplate(input_variables=[('user_question',"{query}"), ('create_table_statements', db.get_table_info()),('instructions',"")], template=mio, validate_template=False )
+
+
 chain = create_sql_query_chain(llm, db)
 validation_chain = prompt | llm | StrOutputParser()
-full_chain = {"query": chain} | validation_chain
+full_chain = {"question": chain} | validation_chain
 
 query = full_chain.invoke(
     {
