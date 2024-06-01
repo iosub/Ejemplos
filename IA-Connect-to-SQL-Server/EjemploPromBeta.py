@@ -6,7 +6,7 @@ from langchain_community.llms import Ollama
 from langchain_community.tools.sql_database.tool import QuerySQLDataBaseTool
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-
+#&&
 
 conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 #db = SQLDatabase.from_uri(conn_str,sample_rows_in_table_info=2)
