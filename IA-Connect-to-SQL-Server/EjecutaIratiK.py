@@ -10,7 +10,7 @@ class Table(BaseModel):
 
     name: str = Field(description="Name of table in SQL database.")
 
-conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
+conn_str = "mssql+pyodbc://gg:ostia@minipc/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 db = SQLDatabase.from_uri(conn_str )#,custom_table_info=table_info2)
 table_names = "\n".join(db.get_usable_table_names())
 
@@ -76,7 +76,6 @@ query = full_chain.invoke(
     {"question": "listame las facturas "}
 )
 print(query)
-
 
 system = """Double check the user's {dialect} query for common mistakes, including:
 - Using NOT IN with NULL values

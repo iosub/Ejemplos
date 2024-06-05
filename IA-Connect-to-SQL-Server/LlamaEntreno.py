@@ -3,13 +3,13 @@ from langchain_community.llms import LlamaCpp
 
 
 template= """
-<|begin_of_text|><|start_header_id|>user<|end_header_id|>
+<|begin_of_text|><|https://medium.com/@mattchinnock/controlling-large-language-model-output-with-pydantic-74b2af5e79d1|>user<|end_header_id|>
 
 Generate a SQL query to answer this question: `{user_question}`
 {instructions}
 
 DDL statements:
-{create_table_statements}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+{create_table_stateents}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
 The following SQL query best answers the question `{user_question}`:
 ```sql
