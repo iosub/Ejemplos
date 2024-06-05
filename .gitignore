@@ -5,3 +5,4 @@ IA-Connect-to-SQL-Server/Lib
 IA-Connect-to-SQL-Server/key.txt
 IA-Connect-to-SQL-Server/key.env
 IA-Connect-to-SQL-Server/.env
+.venv
