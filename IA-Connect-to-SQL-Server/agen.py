@@ -18,7 +18,7 @@ The following SQL query best answers the question `{user_question}`:
 ```sql
 """
 
-conn_str = "mssql+pyodbc://gg:ostia@lenovo12/iatest?driver=ODBC+Driver+17+for+SQL+Server"
+conn_str = "mssql+pyodbc://gg:ostia@minipc/iatest?driver=ODBC+Driver+17+for+SQL+Server"
 
 tables=["T_FACTURA","CLIENTE"]#,"DIVISA"]
 
